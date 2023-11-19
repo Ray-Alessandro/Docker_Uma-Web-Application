@@ -9,7 +9,7 @@ import { Product } from 'src/app/models/product.model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
-import { HttpDataService } from 'src/app/services/http-data.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -30,7 +30,7 @@ export class ProductsComponent {
 
 
   displayedColumns: string[] = [
-    'Producto_ID',
+    'id',
     'nombre',
     'imagen',
     'descripcion',
@@ -42,7 +42,7 @@ export class ProductsComponent {
   //Nesesario importar sus modules en material.module.ts
   @ViewChild(MatSort, { static: true }) Sort!: MatSort;
 
-  constructor(private httpDataService: HttpDataService, public dialog: MatDialog) {
+  constructor(private productService: ProductService, public dialog: MatDialog) {
     this.productData= {} as Product;
   }
 
@@ -53,10 +53,11 @@ export class ProductsComponent {
   }
 
   getAllProducts() {
-    this.httpDataService.getProducts().subscribe((response: any) => {
-      this.dataSource.data = response.products;
+    this.productService.getProducts().subscribe((response: any) => {
+      this.dataSource.data = response;
+      console.log(this.dataSource.data);
       console.log(response);
-    })
+    });
   }
 
   applyFilter(event: Event) {
@@ -81,7 +82,7 @@ export class ProductsComponent {
       }
       this.cancelEdit();
     } else{
-      console.log('valid data');
+      console.log('invalid data');
     }
   }
 
@@ -97,8 +98,8 @@ export class ProductsComponent {
     this.isEditMode = true;
   }
 
-  deleteProduct(id: string){
-    this.httpDataService.deleteProduct(id).subscribe((response: any)=>{
+  deleteProduct(id: number){
+    this.productService.deleteProduct(id).subscribe((response: any)=>{
       this.dataSource.data = this.dataSource.data.filter((o: any)=>{
         this.getAllProducts();
         return o.id !== id ? o : false;
@@ -109,7 +110,7 @@ export class ProductsComponent {
 
 //Ventana Modal
 
-openDialogDelete(product_id : string) {
+openDialogDelete(product_id : number) {
   const dialogRef = this.dialog.open(DialogDeleteProduct, {
     data: { nombre :  this.productDeleted},
   });
@@ -126,27 +127,24 @@ openDialogDelete(product_id : string) {
 
   //add
   addProduct(){ 
-    this.productData.Producto_ID = this.dataSource.data.length + 1;
-    this.httpDataService.createProduct(this.productData).subscribe((response: any)=>{
+    this.productData._id = this.dataSource.data.length + 1;
+    this.productService.createProduct(this.productData).subscribe((response: any)=>{
       this.dataSource.data.push({...response});
-      this.dataSource.data = this.dataSource.data.map((o: any)=>{
-        this.getAllProducts();
-        return o;
-      })
+      this.dataSource.data = this.dataSource.data.map((o: any)=> o);
     })
   }
 
   //update
   updateProduct(){
-    this.httpDataService.updateProduct(this.productData.Producto_ID, this.productData).subscribe((response: any)=>{
+
+    this.productService.updateProduct(this.productData._id, this.productData).subscribe((response: any)=>{
       this.dataSource.data = this.dataSource.data.map((o: any)=>{
-        if(o.id === response.id){
+        if(o._id === response._id){
           o = response;
         }
-        this.getAllProducts();
         return o;
       })
-    })
+    });
   }
 
 }

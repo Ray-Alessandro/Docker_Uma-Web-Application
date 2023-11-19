@@ -13,12 +13,12 @@ export class HomeComponent implements OnInit {
   constructor(private httpDataService: HttpDataService) {}
 
   ngOnInit(): void {
-    this.getAllProducts();
+    // this.getAllProducts();
   }
 
-  getAllProducts() {
-    this.httpDataService.getProducts().subscribe((response: any) => {
-      this.products = response.products;
-    });
-  }
+  // getAllProducts() {
+  //   this..getProducts().subscribe((response: any) => {
+  //     this.products = response.products;
+  //   });
+  // }
 }

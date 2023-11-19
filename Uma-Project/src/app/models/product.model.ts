@@ -1,7 +1,8 @@
 export interface Product {
-    Producto_ID: any;
+    _id: any;
     nombre: any;
     descripcion: any;
     precio: any;
     imagen: any;
+    categoria: any;
 }

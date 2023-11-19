@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 
 import { User } from '../models/user.model';
-import { Product } from '../models/product.model';
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, retry, throwError } from 'rxjs';
@@ -72,45 +71,4 @@ export class HttpDataService {
     )
   }
 
-  // Product CRUD
-
-  getProduct(id : string): Observable<Product>{
-    return this.http.get<Product>(this.baseUrl + '/products'+ id)
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-  }
-
-  getProducts(): Observable<Product>{
-    return this.http.get<Product>(this.baseUrl + '/productos')
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-  }
-
-  createProduct(data: Product): Observable<Product>{
-    return this.http.post<Product>(this.baseUrl + '/products', JSON.stringify(data), this.httpOptions)
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-  }
-
-  updateProduct(id: string, data: Product): Observable<Product>{
-    return this.http.put<Product>(this.baseUrl + '/products/' + id, JSON.stringify(data), this.httpOptions)
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-  }
-
-  deleteProduct(id: string){
-    return this.http.delete<Product>(this.baseUrl + '/products/' + id, this.httpOptions)
-    .pipe(
-      retry(2),
-      catchError(this.handleError)
-    )
-  }
 }
