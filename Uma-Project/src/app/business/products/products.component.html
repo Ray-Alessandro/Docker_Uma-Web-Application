@@ -1,0 +1,116 @@
+<!-- <button mat-fab extended color="primary" class="button-container">
+  <p>Añadir Producto</p>
+  <mat-icon>add</mat-icon>
+</button> -->
+
+<div class="ctn-filter">
+  <div class="header-container">
+
+      <form (submit)="onSubmit()" #productForm= 'ngForm' class="form-container">
+        <mat-form-field>
+            <input matInput placeholder="Nombres" name="Nombre" required [(ngModel)]="productData.nombre">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <input type="text" matInput placeholder="Url Imagen" name="img" required [(ngModel)]="productData.imagen">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <input type="text" matInput placeholder="Descripcion" name="Descripcion" required [(ngModel)]="productData.descripcion">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input type="text" matInput placeholder="Precio" name="Precio" required [(ngModel)]="productData.precio">
+        </mat-form-field>
+
+      <ng-container *ngIf="isEditMode; else elseTemplate">
+          <button mat-button color="primary">Update</button>&nbsp;
+          <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+      </ng-container>&nbsp;
+  
+      <ng-template #elseTemplate>
+          <button mat-button color="primary">Add</button>
+      </ng-template>
+  </form>
+
+
+  </div>
+</div>
+
+<div class="filter">
+  <mat-form-field class="ctn-input">
+    <mat-label>Busca un Producto</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ejem: Juan Perez"
+      aria-label="Search for users" #input>
+  </mat-form-field>
+</div>
+
+
+<div class="table-container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort matSortDirection="desc">
+
+      <ng-container matColumnDef="Producto_ID" class="container-id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-id"> Id. </th>
+        <td mat-cell *matCellDef="let element" class="center-text"> {{element.Producto_ID}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre" class="container-name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-name"> Nombre </th>
+        <td mat-cell *matCellDef="let element" class="center-text"> {{element.nombre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="imagen" class="container-photo">
+        <th mat-header-cell *matHeaderCellDef class="center-text"> Imagen </th>
+        <td mat-cell *matCellDef="let element" class="center-text"> <img src="{{element.imagen}}" alt=""
+            class="picture-product"> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="descripcion" class="container-description">
+        <th mat-header-cell *matHeaderCellDef class="center-text"> Descripcion </th>
+        <td mat-cell *matCellDef="let element" class="center-text"> {{element.descripcion}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="precio" class="container-precio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-precio"> Precio </th>
+        <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef class="center-text"> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+
+          <div class="buttons-actions">
+            <button mat-icon-button color="primary" (click)="editItem(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="openDialogDelete(element.Producto_ID)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="6">
+          <div class="not-found">
+            <p class="msg-not-found">The product was not found:<br> <b>"{{input.value}}" </b></p>
+            <div class="crop-image">
+              <img src="https://cdn.discordapp.com/attachments/1151660063606448158/1154528522698772510/not-found.png"
+                alt="image not-found">
+            </div>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+      aria-label="Select page of periodic elements"></mat-paginator>
+  </div>
+</div>

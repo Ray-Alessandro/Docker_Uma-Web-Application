@@ -1,0 +1,39 @@
+version: '3'
+services:
+  #contenedor de node
+
+  backend:
+    container_name: uma_backend
+    restart: always
+    build: 
+      context: ./Uma-Backend
+      dockerfile: Dockerfile
+    
+    ports:
+      - "5000:3000"
+    links:
+      - database
+    volumes:
+      - ./Uma-Backend:/usr/src/app
+
+  database:
+    container_name: uma_db
+    image: mongo
+    ports:
+      #docker -  puerto mongo 
+      - "27019:27017"
+    
+    volumes:
+      - ./Uma-Backend/temporal/docker:/data/db
+    logging:
+      driver: none
+
+  frontend:
+    container_name: uma_frontend
+    build:
+      context: ./Uma-Project
+      dockerfile: Dockerfile
+    ports:
+      - "4500:80"
+    depends_on:
+      - backend

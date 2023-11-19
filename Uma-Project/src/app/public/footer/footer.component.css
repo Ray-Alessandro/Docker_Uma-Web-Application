@@ -1,0 +1,57 @@
+.footer{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: -25px;
+}
+.container-information{
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+.contact-uma{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.about-uma{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+.brand-social{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    gap: 20px;
+}
+.icons{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-self: center;
+}
+i{
+    font-size: 30px;
+    color: white;
+}
+
+p{
+    width: 100%;
+    text-align: center;
+}

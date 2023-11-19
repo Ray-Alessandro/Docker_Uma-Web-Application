@@ -1,0 +1,26 @@
+<mat-dialog-content class="mat-typography">
+    <div class="vCode-section">
+        <div class ="vCode-container">
+
+            <button class="btn-close" (click)="onNoClick()" mat-icon-button>
+                <mat-icon >close</mat-icon>
+            </button>
+            
+            <div class="title-container">
+            
+                <h1>Mensaje de Confirmación</h1>
+                <h2>¿Estás seguro que quieres borrar este <br>producto?</h2>
+            </div>
+
+            <div class="container-buttons">
+                <button class="btn-one" [mat-dialog-close]="true" >Confirmar</button> 
+                <button class="btn-two" (click)="onNoClick()">Cancelar</button> 
+            </div>
+
+            <div class="extra-information">
+                <mat-icon class="icon-waring">warning</mat-icon>
+                <p>Al borrar no podrás recuperar la información <br>y el producto se borrara.</p>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

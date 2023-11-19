@@ -1,0 +1,29 @@
+.card-producto{
+    display: flex;
+    gap: 20px;
+}
+.btn-detalle{
+    background-color: antiquewhite;
+}
+.btn-detalle:hover{
+    background-color: gainsboro;
+}
+.btn-comprar{
+    background-color: #ff9800;
+    color: white;
+}
+.btn-comprar:hover{
+    cursor: pointer;
+}
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h3{
+    margin: 3rem 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}

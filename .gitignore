@@ -1,0 +1,12 @@
+#BackEnd
+# Omitir el directorio node_modules y su contenido
+Uma-Backend/node_modules/
+
+# Omitir el archivo package-lock.json
+Uma-Backend/package-lock.json
+
+#Omitir copiar el backup de la base de datos
+Uma-Backend/temporal/
+
+#FrontEnd
+Uma-Project/node_modules/
