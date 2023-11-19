@@ -21,3 +21,4 @@ const storeSchema = new mongoose.Schema(
 //exportamos el modelo
 const StoreModel = mongoose.model("tiendas", storeSchema)
 module.exports = StoreModel;
+
