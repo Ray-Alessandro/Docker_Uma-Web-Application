@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpDataService } from 'src/app/services/http-data.service';
-import { Product } from 'src/app/models/product.model';
+import { StoreService } from 'src/app/services/store.service';
+import { Store } from 'src/app/models/store.model';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +8,17 @@ import { Product } from 'src/app/models/product.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  products: Product[] = []; // Declarar la propiedad 'products' como un arreglo de productos
+  stores: Store[] = []; // Declarar la propiedad 'products' como un arreglo de productos
 
-  constructor(private httpDataService: HttpDataService) {}
+  constructor(private storeService: StoreService) {}
 
   ngOnInit(): void {
-    // this.getAllProducts();
+    this.getAllStores(); 
   }
-
-  // getAllProducts() {
-  //   this..getProducts().subscribe((response: any) => {
-  //     this.products = response.products;
-  //   });
-  // }
+  getAllStores() {
+    this.storeService.getAllStores().subscribe((data: any) => {
+      this.stores = data;
+      console.log(this.stores);
+    });
+  }
 }

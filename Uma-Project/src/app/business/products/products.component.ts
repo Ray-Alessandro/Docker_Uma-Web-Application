@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import {NgForm}  from '@angular/forms';
-import {MatPaginator} from '@angular/material/paginator';
+import { NgForm}  from '@angular/forms';
+import { MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import {MatDialog, MatDialogModule,MatDialogRef} from '@angular/material/dialog';
-import {MatSort} from '@angular/material/sort';
+import { MatDialog, MatDialogModule,MatDialogRef} from '@angular/material/dialog';
+import { MatSort} from '@angular/material/sort';
 import { Product } from 'src/app/models/product.model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
