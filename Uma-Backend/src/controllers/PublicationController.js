@@ -2,6 +2,8 @@ const {Router} = require('express');
 const router = Router();
 
 const publicationModel = require("../models/PublicationModel");
+const productModel = require("../models/ProductModel");
+const storeModel = require("../models/StoreModel");
 
 //----------------------CRUD PUBLICACIONES-----------------
 //#Get
@@ -13,6 +15,19 @@ router.get("/publicaciones", async (req, res)=>{
 //#Post
 router.post("/publicaciones", async (req, res) => {
     try {
+        //Verificar que exista el producto y la tienda
+
+        const product = await productModel.findById(req.body.producto_id);
+        const store = await storeModel.findById(req.body.tienda_id);
+
+        if (!product) {
+            return res.status(404).json({ status: "Producto no encontrado" });
+        }
+
+        if (!store) {
+            return res.status(404).json({ status: "Tienda no encontrada" });
+        }
+
         //Crear la publicacion y añadirle la fecha
         req.body.fecha = new Date();
         

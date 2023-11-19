@@ -16,6 +16,7 @@ router.post("/comentarios", async (req, res) => {
     try {
         //Crear el comentario y añadirle la fecha
         req.body.fecha = new Date();
+        req.body.megusta = 0; 
 
         const comment = await commentModel.create(req.body);
         res.status(201).json({ status: "Comentario agregado", comment });
