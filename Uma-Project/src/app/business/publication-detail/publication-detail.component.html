@@ -1,7 +1,7 @@
 <div class="container d-flex flex-column justify-content-center align-items-center w-100 m-5 ">
     <div class="row justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las tarjetas -->
         <div class="col-md-4 mb-4" >
-            <div class="card p-4">
+            <div class="card p-4" *ngIf="publication">
                 <div class="card-body d-flex flex-column justify-content-center align-items-center">
                     <h2 class="card-title">{{ publication.titulo }}</h2>
                     <p class="card-text">{{ publication.descripcion }}</p>
@@ -27,4 +27,18 @@
             </div>
         </div>
     </div>
+
+    <form [formGroup]="formData" class="form">
+        <mat-form-field appearance="outline" class="mat-form">
+            <mat-label aria-label="Título">Comentario</mat-label>
+            <input matInput  formControlName="comentario" name="comentario" >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-form">
+            <mat-label aria-label="Subtítulo">Usuario Id</mat-label>
+            <input matInput  formControlName="usuario_id" name="usuario_id" >
+        </mat-form-field>
+        <div class="btn-publicar">
+            <button (click)="createComment()"  mat-raised-button [disabled]="formData.invalid" type="submit" color="primary" aria-label="Botón para proceder al registro completo">Publicar</button>
+        </div>
+    </form>
 </div>

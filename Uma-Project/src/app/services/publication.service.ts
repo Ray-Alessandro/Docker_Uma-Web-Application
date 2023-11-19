@@ -70,4 +70,12 @@ export class PublicationService {
     )
   }
   
+  getPublicationById(id: any): Observable<Publication>{
+    return this.http.get<Publication>(this.baseUrl + '/publicaciones/' + id)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
+  
 }
