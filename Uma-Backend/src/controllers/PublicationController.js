@@ -26,8 +26,14 @@ router.post("/publicaciones", async (req, res) => {
 
 //#Get by id
 router.get("/publicaciones/:id", async (req, res)=>{
-    const publication= await publicationModel.findById(req.param.id);
+    try {
+    const publication= await publicationModel.findById(req.params.id);
     res.json(publication);
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error al obtener la publicación" });
+    }
 });
 
 //#Put
