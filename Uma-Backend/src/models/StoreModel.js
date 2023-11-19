@@ -5,7 +5,7 @@ const storeSchema = new mongoose.Schema(
         _id: {type: Number},
         nombre: {type: String},
         calificacion: {type: Number},
-        image: {type: String},
+        imagen: {type: String},
         localidad: {
             direccion: {type:String},
             ciudad: {type:String},
