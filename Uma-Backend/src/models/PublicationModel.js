@@ -17,5 +17,5 @@ const publicacionSchema = new mongoose.Schema(
 );
 
 //Exportamos el modelo
-const modelPublicacion = mongoose.model("publicaciones", publicacionSchema)
-module.exports = modelPublicacion;
+const PublicationModel = mongoose.model("publicaciones", publicacionSchema)
+module.exports = PublicationModel;

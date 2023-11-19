@@ -5,6 +5,7 @@ const storeSchema = new mongoose.Schema(
         _id: {type: Number},
         nombre: {type: String},
         calificacion: {type: Number},
+        image: {type: String},
         localidad: {
             direccion: {type:String},
             ciudad: {type:String},
@@ -18,5 +19,5 @@ const storeSchema = new mongoose.Schema(
 )
 
 //exportamos el modelo
-const modelStore = mongoose.model("tiendas", storeSchema)
-module.exports = modelStore;
+const StoreModel = mongoose.model("tiendas", storeSchema)
+module.exports = StoreModel;

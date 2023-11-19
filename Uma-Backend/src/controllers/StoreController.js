@@ -30,7 +30,7 @@ router.post("/tiendas", async (req, res) => {
 router.put('/tiendas/:id', async (req, res) => {
     try {
         await storeModel.findByIdAndUpdate(req.params.id, req.body);
-        res.json({ status: "Tienda Actualizada" });
+        res.status(200)({ status: "Tienda Actualizada" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Error al actualizar la tienda" });

@@ -13,6 +13,9 @@ router.get("/publicaciones", async (req, res)=>{
 //#Post
 router.post("/publicaciones", async (req, res) => {
     try {
+        //Crear la publicacion y añadirle la fecha
+        req.body.fecha = new Date();
+        
         const publication = await publicationModel.create(req.body);
         res.status(201).json({ status: "Publicación agregada", publication });
     } catch (err) {
@@ -31,7 +34,7 @@ router.get("/publicaciones/:id", async (req, res)=>{
 router.put("/publicaciones/:id", async (req, res) => {
     try {
         await publicationModel.findOneAndUpdate({ _id: req.params.id }, req.body);
-        res.json({ status: "Publicación Actualizada" });
+        res.status(200)({ status: "Publicación Actualizada" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Error al actualizar la publicación" });

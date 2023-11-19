@@ -23,6 +23,6 @@ const userSchema =  new mongoose.Schema(
 );
 
 //Exportamos el modelo
-const ModelUser = mongoose.model("usuarios", userSchema);
+const UserModel = mongoose.model("usuarios", userSchema);
 
-module.exports = ModelUser;
+module.exports = UserModel;

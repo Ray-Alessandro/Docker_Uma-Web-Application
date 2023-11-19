@@ -28,6 +28,8 @@ app.use(require("./models/StoreModel.js"));
 app.use(require("./models/ProductModel.js"));
 app.use(require("./models/UserModel.js"));
 app.use(require("./models/PublicationModel.js"));
+app.use(require("./models/CommentModel.js"));
+app.use(require("./models/ReactionModel.js"));
 
 //Definimos el puerto del servicio web
 app.listen(3000);

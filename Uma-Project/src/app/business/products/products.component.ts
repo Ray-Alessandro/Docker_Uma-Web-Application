@@ -32,7 +32,6 @@ export class ProductsComponent {
   displayedColumns: string[] = [
     'id',
     'nombre',
-    'imagen',
     'descripcion',
     'precio',
     'acciones'
@@ -89,6 +88,7 @@ export class ProductsComponent {
   cancelEdit(){
     this.isEditMode = false;
     this.productForm.resetForm();
+    this.getAllProducts();
   }
 
 
@@ -142,6 +142,7 @@ openDialogDelete(product_id : number) {
         if(o._id === response._id){
           o = response;
         }
+        this.getAllProducts();
         return o;
       })
     });
