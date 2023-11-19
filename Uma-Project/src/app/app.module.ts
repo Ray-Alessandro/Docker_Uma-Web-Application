@@ -13,6 +13,7 @@ import { ProductsComponent } from './business/products/products.component';
 import { MaterialModule } from 'src/shared/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PublicationComponent } from './business/publication/publication.component';
+import { PublicationDetailComponent } from './business/publication-detail/publication-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PublicationComponent } from './business/publication/publication.compone
     ToolbarComponent,
     UsersComponent,
     ProductsComponent,
-    PublicationComponent
+    PublicationComponent,
+    PublicationDetailComponent
   ],
   imports: [
     BrowserModule,

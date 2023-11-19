@@ -1,4 +1,5 @@
 <div id="carouselExample" class="carousel slide">
+  <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="https://media.discordapp.net/attachments/1151996567549648996/1155426252426063932/slide3-990x410.jpg?width=1485&height=615" class="d-block w-100" alt="...">
@@ -19,22 +20,33 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+  
 
   <div class="container">
-    <h3>Productos Destacados</h3>
+    <h2>Productos Destacados</h2>
     <div class="row">
-      <div class="col-md-4" *ngFor="let store of stores">
-        <div class="card mb-4">
-          <img src="{{ store.image }}" class="card-img-top" alt="" width="40px" height="220px">
-          <div class="card-body">
-            <h5 class="card-title">{{ store.nombre }}</h5>
-            <p class="card-text">{{ store.calificacion }}</p>
+      <div class="col-md-4 " *ngFor="let store of stores">
+        <div class="card rounded mb-4">
+          <div class="card-header">
+            <h4 class="card-title text-center">{{  store.nombre | uppercase }}</h4>
           </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-detalle">Ver Publicaciones</a>
-            <a class="btn btn-comprar">{{ store.calificacion }}</a>
+          <div class="card-body ">
+            <img src="{{ store.imagen }}" class="card-img-top" alt="" width="auto" height="auto">
+          </div>
+          <div class="card-footer d-flex flex-column gap-3 ">
+            <div class="calificacion d-flex flex-row gap-2 mt-2 justify-content-center align-items-center">
+                <ng-container *ngFor="let i of [].constructor(store.calificacion)">
+                  <i class="bi bi-star-fill text-center" style="font-size: 1.5rem; color: #FFC700;"></i>
+                </ng-container>
+              
+            </div>
+            <div class="btns d-flex gap-5">
+              <a href="#" class="btn btn-detalle">Ver Tienda</a>
+              <!-- <a href="#" class="btn btn-detalle">Seguir</a> -->
+            </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>

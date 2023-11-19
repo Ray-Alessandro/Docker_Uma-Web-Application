@@ -1,0 +1,11 @@
+.btn-detalle{
+
+    align-self: center;
+    text-align: center;
+    width: 50%;
+    background-color: #ff9900b2;
+    color: white;
+}
+.btn-detalle:hover{
+    cursor: pointer;
+}

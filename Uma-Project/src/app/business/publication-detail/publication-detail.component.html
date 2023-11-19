@@ -1,6 +1,6 @@
 <div class="container d-flex flex-column justify-content-center align-items-center w-100 m-5 ">
     <div class="row justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las tarjetas -->
-        <div class="col-md-4 mb-4" *ngFor="let publication of publications">
+        <div class="col-md-4 mb-4" >
             <div class="card p-4">
                 <div class="card-body d-flex flex-column justify-content-center align-items-center">
                     <h2 class="card-title">{{ publication.titulo }}</h2>
@@ -24,7 +24,6 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-                <a href="#" class="btn btn-detalle">Ver Reacciones</a>
             </div>
         </div>
     </div>
