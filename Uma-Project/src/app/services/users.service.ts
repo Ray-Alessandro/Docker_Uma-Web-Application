@@ -75,5 +75,3 @@ export class UsersService {
     )
   }
 }
-
-//   // Product CRUD

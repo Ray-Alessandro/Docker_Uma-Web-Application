@@ -4,29 +4,36 @@
   
         <form (submit)="onSubmit()" #userForm= 'ngForm'>
           <mat-form-field>
-              <input matInput placeholder="Nombres" name="Nombres" required [(ngModel)]="userData.Nombres">
+              <input matInput placeholder="Nombres" name="Nombres" required [(ngModel)]="userData.nombres">
           </mat-form-field>
-      
+        
           <mat-form-field>
-              <input type="text" matInput placeholder="Apellidos" name="Apellidos" required [(ngModel)]="userData.Apellidos">
+              <input type="text" matInput placeholder="Apellidos" name="Apellidos" required [(ngModel)]="userData.apellidos">
           </mat-form-field>
-      
+
           <mat-form-field>
-              <input type="text" matInput placeholder="Correo" name="Correo" required [(ngModel)]="userData.correo">
+              <input type="text" matInput placeholder="Telefono" name="Telefono" required [(ngModel)]="userData.telefono">
+          </mat-form-field>
+        
+          <mat-form-field>
+              <input type="text" matInput placeholder="Correo" name="Correo" required [(ngModel)]="userData.credencial.correo">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="text" matInput placeholder="Password" name="Password" required [(ngModel)]="userData.credencial.password">
           </mat-form-field>
           
           <mat-form-field>
-              <input type="text" matInput placeholder="Telefono" name="Telefono" required [(ngModel)]="userData.numero_telefono">
+              <input type="text" matInput placeholder="Pais" name="Pais" required [(ngModel)]="userData.localidad.pais">
           </mat-form-field>
 
           <mat-form-field>
-            <input type="text" matInput placeholder="Credencial" name="Credencial" required [(ngModel)]="userData.Credencial_Credencial_ID">
-        </mat-form-field>
-    
-        <mat-form-field>
-          <input type="text" matInput placeholder="Localidad" name="Localidad" required [(ngModel)]="userData.Localidad_Localidad_ID">
-      </mat-form-field>
-
+            <input type="text" matInput placeholder="Ciudad" name="Ciudad" required [(ngModel)]="userData.localidad.ciudad">
+          </mat-form-field>
+      
+          <mat-form-field>
+            <input type="text" matInput placeholder="Dirreccion" name="Dirreccion" required [(ngModel)]="userData.localidad.direccion">
+          </mat-form-field>
     
         <ng-container *ngIf="isEditMode; else elseTemplate">
             <button mat-button color="primary">Update</button>&nbsp;
@@ -59,32 +66,37 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort matSortDirection="desc">
   
-        <ng-container matColumnDef="Usuario_ID" class="container-id">
+        <ng-container matColumnDef="Usuario_id" class="container-id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-id"> Id. </th>
-          <td mat-cell *matCellDef="let element" class="center-text"> {{element.Usuario_ID}} </td>
+          <td mat-cell *matCellDef="let element" class="center-text"> {{element._id}} </td>
         </ng-container>
   
         <ng-container matColumnDef="Nombres" class="container-name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-name"> Nombres </th>
-          <td mat-cell *matCellDef="let element" class="center-text"> {{element.Nombres}} </td>
+          <td mat-cell *matCellDef="let element" class="center-text"> {{element.nombres}} </td>
         </ng-container>
   
         <ng-container matColumnDef="Apellidos" class="container-lastname">
             <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-lastname"> Apellidos </th>
-            <td mat-cell *matCellDef="let element" class="center-text"> {{element.Apellidos}} </td>
+            <td mat-cell *matCellDef="let element" class="center-text"> {{element.apellidos}} </td>
           </ng-container>
   
-        <ng-container matColumnDef="correo" class="container-correo">
+        <ng-container matColumnDef="Correo" class="container-correo">
           <th mat-header-cell *matHeaderCellDef class="center-text"> Correo </th>
-          <td mat-cell *matCellDef="let element" class="center-text"> {{element.correo}} </td>
+          <td mat-cell *matCellDef="let element" class="center-text"> {{element.credencial.correo}} </td>
         </ng-container>
   
-        <ng-container matColumnDef="numero_telefono" class="container-telefono">
+        <ng-container matColumnDef="Numero_telefono" class="container-telefono">
           <th mat-header-cell *matHeaderCellDef class="header-numTelf"> Numero de Telefono </th>
-          <td mat-cell *matCellDef="let element"> {{element.numero_telefono}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
         </ng-container>
+
+          <ng-container matColumnDef="Pais">
+            <th mat-header-cell *matHeaderCellDef class="center-text"> Pais </th>
+            <td mat-cell *matCellDef="let element" > {{element.localidad.pais}} </td>
+          </ng-container>
   
-        <ng-container matColumnDef="acciones">
+        <ng-container matColumnDef="Acciones">
           <th mat-header-cell *matHeaderCellDef class="center-text"> Acciones </th>
           <td mat-cell *matCellDef="let element">
   
@@ -93,7 +105,7 @@
                 <mat-icon>edit</mat-icon>
               </button>
   
-              <button mat-icon-button color="warn" (click)="openDialogDelete(element.Usuario_ID)">
+              <button mat-icon-button color="warn" (click)="openDialogDelete(element._id)">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>

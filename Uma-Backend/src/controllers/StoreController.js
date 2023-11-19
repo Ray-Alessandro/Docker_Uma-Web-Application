@@ -16,21 +16,36 @@ router.get('/tiendas/:id', async (req, res) => {
 });
 
 //#Post
-router.post("/tiendas", async(req, res)=>{
-    const store = await storeModel.create(req.body);
-    res.json({status: "Tienda agregada"}, store);
+router.post("/tiendas", async (req, res) => {
+    try {
+        const store = await storeModel.create(req.body);
+        res.status(201).json({ status: "Tienda agregada", store });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error al agregar la tienda" });
+    }
 });
 
 //#Put
 router.put('/tiendas/:id', async (req, res) => {
-    await storeModel.findByIdAndUpdate(req.params.id, req.body);
-    res.json({status: "Tienda Actualizada"});
+    try {
+        await storeModel.findByIdAndUpdate(req.params.id, req.body);
+        res.json({ status: "Tienda Actualizada" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error al actualizar la tienda" });
+    }
 });
 
 //#Delete
 router.delete("/tiendas/:id", async (req, res) => {
-    await storeModel.findByIdAndDelete(req.params.id);
-    res.json({status: "Tienda Eliminada"});
+    try {
+        await storeModel.findByIdAndDelete(req.params.id);
+        res.json({ status: "Tienda Eliminada" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error al eliminar la tienda" });
+    }
 });
 
 module.exports = router;
