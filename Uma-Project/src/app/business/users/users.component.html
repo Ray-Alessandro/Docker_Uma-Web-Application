@@ -4,7 +4,7 @@
 
       <form (submit)="onSubmit()" #userForm= 'ngForm'>
         <mat-form-field>
-            <input matInput placeholder="Nombres" name="Nombres" required [(ngModel)]="userData.nombres">
+            <input type="text" matInput placeholder="Nombres" name="Nombres" required [(ngModel)]="userData.nombres">
         </mat-form-field>
       
         <mat-form-field>

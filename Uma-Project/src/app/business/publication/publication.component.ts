@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Publication } from '../../models/publication.model';
 import { PublicationService } from '../../services/publication.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-publication',
@@ -10,9 +11,31 @@ import { PublicationService } from '../../services/publication.service';
 export class PublicationComponent {
   publications : Publication[] = [];
 
+  publicationData: Publication = {
+    _id: null,
+    titulo: null,
+    descripcion: null,
+    fecha: null,
+    imagenes: null,
+    tienda_id: null,
+    producto_id: null
+  };
+
   constructor(private publicationService:PublicationService) { }
   ngOnInit(): void {
     this.getAllPublications();
+  }
+
+  @ViewChild('userForm', {static: false})
+  publicationForm!: NgForm;
+
+  onSubmit(){
+    if(this.publicationForm.form.valid){
+      console.log('valid');
+      this.createPublication();
+    } else{
+      console.log('invalid data');
+    }
   }
 
   getAllPublications(){
@@ -22,5 +45,11 @@ export class PublicationComponent {
     });
   }
 
-
+  createPublication(){
+    this.publicationData._id = this.publications.length + 1;
+    this.publicationService.createPublication(this.publicationData).subscribe((data: any) => {
+      console.log(data);
+      this.getAllPublications();
+    });
+  }
 }

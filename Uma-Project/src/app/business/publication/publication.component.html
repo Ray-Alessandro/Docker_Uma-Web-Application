@@ -1,3 +1,31 @@
+<div class="ctn-filter">
+  <div class="header-container">
+        <form (submit)="onSubmit()" #userForm= 'ngForm'>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Titulo" name="Titulo" required [(ngModel)]="publicationData.titulo">
+            </mat-form-field>
+        
+            <mat-form-field>
+                <input type="text" matInput placeholder="Descripcion" name="Descripcion" required [(ngModel)]="publicationData.descripcion">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input type="text" matInput placeholder="Imagen" name="Imagen" required [(ngModel)]="publicationData.imagenes">
+            </mat-form-field>
+        
+            <mat-form-field>
+                <input type="text" matInput placeholder="Tienda_id" name="Tienda_id" required [(ngModel)]="publicationData.tienda_id">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input type="text" matInput placeholder="Producto_id" name="Producto_id" required [(ngModel)]="publicationData.producto_id">
+            </mat-form-field>
+
+            <button mat-button color="primary">Add</button>
+        </form>
+    </div>
+</div>
+
 <div class="container d-flex flex-column justify-content-center align-items-center w-100 m-5 ">
     <div class="row justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las tarjetas -->
         <div class="col-md-4 mb-4" *ngFor="let publication of publications">

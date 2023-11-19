@@ -9,3 +9,17 @@
 .btn-detalle:hover{
     cursor: pointer;
 }
+
+
+.ctn-filter{
+    margin-top : 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.header-container{
+    display: flex;
+    justify-content: center;
+}
