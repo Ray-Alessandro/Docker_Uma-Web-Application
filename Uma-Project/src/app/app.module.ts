@@ -12,6 +12,7 @@ import { ProductsComponent } from './business/products/products.component';
 
 import { MaterialModule } from 'src/shared/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PublicationComponent } from './business/publication/publication.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     ToolbarComponent,
     UsersComponent,
-    ProductsComponent
+    ProductsComponent,
+    PublicationComponent
   ],
   imports: [
     BrowserModule,
