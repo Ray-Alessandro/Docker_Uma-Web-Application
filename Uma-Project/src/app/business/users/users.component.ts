@@ -22,7 +22,21 @@ import { UsersService } from 'src/app/services/users.service';
 
 
 export class UsersComponent {
-  userData!: User;
+  userData: User = {
+    _id: null,
+    nombres: null,
+    apellidos: null,
+    telefono: null,
+    credencial: {
+      correo: '',
+      password: ''
+    },
+    localidad: {
+      direccion: null,
+      pais: null,
+      ciudad: null
+    }
+  };
   //userCreated = false;
   userDeleted = false;
 
@@ -44,13 +58,14 @@ export class UsersComponent {
       }
       this.cancelEdit();
     } else{
-      console.log('valid data');
+      console.log('invalid data');
     }
   }
 
   cancelEdit(){
     this.isEditMode = false;
     this.userForm.resetForm();
+    this.getAllUsers();
   }
   editItem(element: any){
     this.userData = element;
@@ -59,20 +74,20 @@ export class UsersComponent {
 
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = [
-    'Usuario_ID',
+    'Usuario_id',
     'Nombres',
     'Apellidos',
-    'correo',
-    'numero_telefono',
-    'acciones'
+    'Correo',
+    'Numero_telefono',
+    'Pais',
+    'Acciones'
   ];
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   //Nesesario importar sus modules en material.module.ts
   @ViewChild(MatSort, { static: true }) Sort!: MatSort;
 
-  constructor(private httpDataService: HttpDataService,private userService: UsersService , public dialog: MatDialog) {
-    this.userData= {} as User;
+  constructor(private userService: UsersService , public dialog: MatDialog) {
   }
 
   //Ventana Modal
@@ -117,7 +132,7 @@ export class UsersComponent {
 
   getAllUsers() {
     this.userService.getUsers().subscribe((response: any) => {
-      this.dataSource.data = response.users;
+      this.dataSource.data = response;
       console.log(response);
     })
   }
@@ -136,7 +151,7 @@ export class UsersComponent {
 
   //delete
   deleteUser(id: string){
-    this.httpDataService.deleteUser(id).subscribe((response: any)=>{
+    this.userService.deleteUser(id).subscribe((response: any)=>{
       this.dataSource.data = this.dataSource.data.filter((o: any)=>{
         this.userDeleted = false;
         this.getAllUsers();
@@ -149,8 +164,8 @@ export class UsersComponent {
 
   //add
   addUser(){ 
-    this.userData.id = this.dataSource.data.length + 1; //this.dataSource.data.length + 1;
-    this.httpDataService.createUser(this.userData).subscribe((response: any)=>{
+    this.userData._id = this.dataSource.data.length + 1; //this.dataSource.data.length + 1;
+    this.userService.createUser(this.userData).subscribe((response: any)=>{
       this.dataSource.data.push({...response});
       this.dataSource.data = this.dataSource.data.map((o: any)=>{
         this.getAllUsers();
@@ -161,7 +176,7 @@ export class UsersComponent {
 
   //update
   updateUser(){
-    this.httpDataService.updateUser(this.userData.id, this.userData).subscribe((response: any)=>{
+    this.userService.updateUser(this.userData._id, this.userData).subscribe((response: any)=>{
       this.dataSource.data = this.dataSource.data.map((o: any)=>{
         if(o.Usuario_ID === response.Usuario_ID){
           o = response;

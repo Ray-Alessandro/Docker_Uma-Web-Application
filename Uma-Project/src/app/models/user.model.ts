@@ -1,11 +1,11 @@
 export interface User {
-    id: any;
+    _id: any;
     nombres: any;
     apellidos: any;
     telefono: any;
     credencial: {
         correo: any;
-        contrasena: any;
+        password: any;
     }
     localidad : {
         direccion: any;

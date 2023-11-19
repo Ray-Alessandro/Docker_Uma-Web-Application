@@ -12,13 +12,18 @@ router.get("/usuarios", async (req,res) => {
 
 //#Post
 router.post("/usuarios", async (req, res) => {
-     /*Una forma
+    /*Una forma
     const { _id,nombres, apellidos, telefono, credencial, localidad } = req.body;
     const user = new userModel({ _id,nombres, apellidos, telefono, credencial, localidad });
     await user.save();*/
     
-    const user = await userModel.create(req.body);
-    res.json({status: "Usuario agregado",user});
+    try{
+        const user = await userModel.create(req.body);
+        res.status(201).json({ status: 'Usuario agregado', user });
+    }catch(err){
+        console.error(err);
+        res.status(500).json({ error: 'Error al agregar el usuario' });
+    }
 });
 
 //#Get by id
@@ -29,20 +34,31 @@ router.get("/usuarios/:id", async (req, res) => {
 
 //#Put
 router.put("/usuarios/:id", async (req, res) => {
-    await userModel.findOneAndUpdate({_id:req.params.id}, req.body);
-    res.json({status: "Usuario Actualizado"});
+    try {
+        await userModel.findOneAndUpdate({ _id: req.params.id }, req.body);
+        res.status(200).json({ status: "Usuario Actualizado" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error al actualizar el usuario" });
+    }
 });
 
 //#Delete
 router.delete("/usuarios/:id", async (req, res) => {
-    const user = await userModel.findById(req.params.id);
-    if(!user){
-        return res.status(404).json({status: "Usuario no encontrado"});
+    try {
+        const user = await userModel.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ status: "Usuario no encontrado" });
+        }
+
+        await userModel.findByIdAndDelete(req.params.id);
+
+        res.json({ status: "Usuario Eliminado" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error al eliminar el usuario" });
     }
-
-    await modelUser.findByIdAndDelete(req.params.id);
-
-    res.json({status: "Usuario Eliminado"});
 });
 
 //Exportamos el Controlador
