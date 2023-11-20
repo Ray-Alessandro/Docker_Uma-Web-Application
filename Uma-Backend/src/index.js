@@ -38,6 +38,3 @@ console.log("Server on port", 3000);
 app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
 });
-
-
-

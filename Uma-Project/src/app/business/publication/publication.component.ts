@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Publication } from '../../models/publication.model';
 import { PublicationService } from '../../services/publication.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-publication',
@@ -21,7 +22,8 @@ export class PublicationComponent {
     producto_id: null
   };
 
-  constructor(private publicationService:PublicationService) { }
+  constructor(private publicationService: PublicationService, private router: Router) { }
+
   ngOnInit(): void {
     this.getAllPublications();
   }
@@ -45,11 +47,20 @@ export class PublicationComponent {
     });
   }
 
+
+  // ...
+
+
+
   createPublication(){
     this.publicationData._id = this.publications.length + 1;
     this.publicationService.createPublication(this.publicationData).subscribe((data: any) => {
       console.log(data);
       this.getAllPublications();
     });
+  }
+
+  irPublicacion(id: any){
+    this.router.navigate(['/publications/', id]);
   }
 }

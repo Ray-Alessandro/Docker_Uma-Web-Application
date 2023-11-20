@@ -30,6 +30,14 @@ export class CommentService {
     return throwError('Something happened with request, please try again later');
   }
 
+  getComments(): Observable<Comentario>{
+    return this.http.get<Comentario>(this.baseUrl + '/comentarios')
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+  }
+
   createComment(data: Comentario): Observable<Comentario>{
     return this.http.post<Comentario>(this.baseUrl + '/comentarios', JSON.stringify(data), this.httpOptions)
     .pipe(
@@ -45,8 +53,5 @@ export class CommentService {
       catchError(this.handleError)
     )
   }
-
-  
-
 
 }

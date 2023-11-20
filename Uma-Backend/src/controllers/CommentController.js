@@ -2,6 +2,8 @@ const {Router} = require('express');
 const router = Router();
 
 const commentModel = require("../models/CommentModel");
+const userModel = require("../models/UserModel");
+const publicationModel = require("../models/PublicationModel");
 
 //-----------------CRUD COMENTARIOS-----------------
 
@@ -14,6 +16,20 @@ router.get("/comentarios", async (req, res)=>{
 //#Post
 router.post("/comentarios", async (req, res) => {
     try {
+
+        //Validar que exista la publicacion y el usuario
+        const user = await userModel.findById(req.body.usuario_id);
+        const publicacion = await publicationModel.findById(req.body.publicacion_id);
+
+        if (!user) {
+            return res.status(404).json({ status: "Usuario no encontrado" });
+        }
+
+        if (!publicacion) {
+            return res.status(404).json({ status: "Publicacion no encontrada" });
+        }
+
+
         //Crear el comentario y añadirle la fecha
         req.body.fecha = new Date();
         req.body.megusta = 0; 
@@ -62,9 +78,6 @@ router.delete("/comentarios/:id", async (req, res) => {
     }
 });
 
-const userModel = require("../models/UserModel");
-const publicationModel = require("../models/PublicationModel");
-
 //Comentarios por publicacion
 
 router.get("/comentarios/publicacion/:id", async (req, res)=>{
@@ -79,6 +92,17 @@ router.get("/comentarios/publicacion/:id", async (req, res)=>{
 
         const commentResponse = await Promise.all(comments.map(async (comment) => {
             const user = await userModel.findById(comment.usuario_id);
+ 
+
+            if (!user) {
+                return {
+                    _id: comment._id,
+                    comentario: comment.comentario,
+                    fecha: comment.fecha,
+                    megusta: comment.megusta,
+                    usuario: null
+                };
+            }   
 
             return {
                 _id: comment._id,
@@ -89,7 +113,8 @@ router.get("/comentarios/publicacion/:id", async (req, res)=>{
                     _id: user._id,
                     nombres: user.nombres,
                     apellidos: user.apellidos,
-                    correo: user.credencial.correo
+                    correo: user.credencial.correo,
+                    foto: user.foto
                 }
             };
         }));
