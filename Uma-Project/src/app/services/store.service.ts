@@ -13,7 +13,11 @@ export class StoreService {
 
   baseUrl: string = environment.baseURL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    console.log('Service is working');
+    console.log(this.baseUrl);
+
+  }
 
   httpOptions = {
     headers: new HttpHeaders({

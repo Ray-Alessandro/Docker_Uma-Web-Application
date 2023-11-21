@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/services/store.service';
 import { Store } from 'src/app/models/store.model';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,12 @@ import { Store } from 'src/app/models/store.model';
 })
 export class HomeComponent implements OnInit {
   stores: Store[] = []; // Declarar la propiedad 'products' como un arreglo de productos
+  baseUrl: string = environment.baseURL;
+  constructor(private storeService: StoreService) {
+    console.log('Service is working');
+    console.log(this.baseUrl);
 
-  constructor(private storeService: StoreService) {}
+  }
 
   ngOnInit(): void {
     this.getAllStores(); 

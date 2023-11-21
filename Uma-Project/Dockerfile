@@ -24,6 +24,9 @@ FROM nginx:alpine
 # Copia los archivos de construcción desde la fase de compilación
 COPY --from=build /usr/src/app/dist/uma-project /usr/share/nginx/html
 
+# Copia el archivo de configuración de Nginx al contenedor
+COPY default.conf /etc/nginx/conf.d/default.conf
+
 # Exponer el puerto 80 (puerto del servidor web Nginx)
 EXPOSE 80
 
