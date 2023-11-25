@@ -23,3 +23,11 @@
     display: flex;
     justify-content: center;
 }
+
+.btn-precio{
+    align-self: center;
+    text-align: center;
+    width: 50%;
+    background-color: antiquewhite;
+    color: black;
+}

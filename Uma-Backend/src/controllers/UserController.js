@@ -64,7 +64,7 @@ router.delete("/usuarios/:id", async (req, res) => {
 //Login
 router.post("/usuarios/login", async (req, res) => {
     try {
-        const user = await userModel.findOne({ credencial: req.body.credencial });
+        const user = await userModel.findOne({ credencial: req.body});
 
         if (!user) {
             return res.status(404).json({ status: "Usuario no encontrado" });

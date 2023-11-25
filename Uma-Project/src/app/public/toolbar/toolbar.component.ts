@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,6 +10,14 @@ import { MenuItem } from 'primeng/api';
 export class ToolbarComponent implements OnInit {
   items: MenuItem[] | undefined;
   sidebarVisible: boolean = false;
+
+  isLogged: boolean = false;
+
+    constructor(private loginService: LoginService) {
+      if (this.loginService.isUserLogged() == "logged") {
+        this.isLogged = true;
+      }
+    }
 
   ngOnInit() {
       this.items = [
@@ -30,6 +39,12 @@ export class ToolbarComponent implements OnInit {
               icon: 'pi pi-upload',
               routerLink: '/fileupload'
           }
-      ];
+      ];   
+  }
+
+  cerrarSesion(){
+    this.loginService.userUnlogged();
+    alert("Se cerro sesion correctamente");
+    window.location.reload();
   }
 }

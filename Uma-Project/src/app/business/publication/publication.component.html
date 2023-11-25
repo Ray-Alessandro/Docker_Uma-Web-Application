@@ -52,8 +52,10 @@
                           <span class="visually-hidden">Next</span>
                       </button>
                   </div>
-                  <div class="flex justify-content-center align-content-center	">
+                  <div class="flex justify-content-center align-content-center	row gap-2">
                       <a (click)="irPublicacion(publication._id)"  class="btn btn-detalle">Ver Publicacion</a>
+                      <a (click)="irPublicacion(publication._id)" class="btn btn-precio">Precio: S/.{{publication.producto.precio}}</a>
+
                   </div>
               </div>
           </div>

@@ -5,5 +5,6 @@ export interface Publication {
     fecha: any;
     imagenes: any;
     tienda_id: any;
-    producto_id: any
+    producto_id: any,
+    producto:any,
 }

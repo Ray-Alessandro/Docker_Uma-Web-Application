@@ -13,11 +13,17 @@
 
     <div class="snack ">
       <p-sidebar [(visible)]="sidebarVisible" styleClass="w-15rem 	">
-        <div class="flex flex-column	gap-5	 justify-content-center  align-content-center	">
-          <a  routerLink="home" aria-label="Bottom to Home">Inicio</a>
-          <a  routerLink="users" aria-label="Bottom to Users">Usuarios</a>
-          <a  routerLink="publications" aria-label="Bottom to Users">Publicaciones</a>
-          <a  routerLink="products" aria-label="Bottom to Products">Productos</a>
+        <div class="flex flex-column justify-content-end  align-content-end ">
+          <div class="flex flex-column	gap-5	 justify-content-center  align-content-center	">
+            <a  routerLink="home" aria-label="Bottom to Home">Inicio</a>
+            <a *ngIf="isLogged" routerLink="users" aria-label="Bottom to Users">Usuarios</a>
+            <a *ngIf="isLogged" routerLink="publications" aria-label="Bottom to Users">Publicaciones</a>
+            <a *ngIf="isLogged" routerLink="products" aria-label="Bottom to Products">Productos</a>
+          </div>
+          <div class="btns flex flex-column gap-4" style="margin-top: 35rem;">
+            <a *ngIf="!isLogged" routerLink="login" >Iniciar Sesión</a>
+            <a *ngIf="isLogged"   (click)="cerrarSesion()" >Cerrar Sesión</a>
+          </div>
         </div>
       </p-sidebar>
       <a (click)="sidebarVisible = true" >

@@ -8,14 +8,14 @@
             <span class="p-inputgroup-addon">
                 <i class="pi pi-user"></i>
             </span>
-            <input pInputText placeholder="Correo" style="font-size: 1.35rem; border: 0.5px solid rgb(207, 204, 204);"/>
+            <input pInputText placeholder="Correo"  [(ngModel)]="loginData.correo" style="font-size: 1.35rem; border: 0.5px solid rgb(207, 204, 204);"/>
         </div>
 
-        <p-password class="pass-button" [(ngModel)]="value" [toggleMask]="true" placeholder="Contraseña" class="p-inputtext-lg"></p-password>
+        <p-password class="pass-button" [(ngModel)]="loginData.password" [toggleMask]="true" placeholder="Contraseña" class="p-inputtext-lg"></p-password>
     </div>
 
     <div class="flex justify-content-center">
-        <p-button label="Ingresar"></p-button>
+        <p-button label="Ingresar" (click) = "loginUser()" ></p-button>
     </div>
 
 </div>

@@ -6,6 +6,7 @@ import { Comentario } from 'src/app/models/comentario.model';
 import { CommentService } from 'src/app/services/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -21,26 +22,39 @@ export class PublicationDetailComponent {
     fecha: null,
     imagenes: null,
     tienda_id: null,
-    producto_id: null
+    producto_id: null,
+    producto:null,
   };  
   allComents: Comentario[] = [];
+
+  isLogged: boolean = false;
 
   comments : any = [];
   comment !:Comentario;
   id: any;
+
+  user!: any;
   
   formData = new FormGroup({
     'comentario': new FormControl('', Validators.required),
-    'usuario_id': new FormControl('', Validators.required),
+    //'usuario_id': new FormControl('', Validators.required),
   });
 
 
-  constructor( private route: ActivatedRoute, private publicationService:PublicationService, private comentarioService: CommentService,  private fb: FormBuilder) { 
+  constructor( private route: ActivatedRoute, private publicationService:PublicationService, private comentarioService: CommentService,  private fb: FormBuilder, private loginService : LoginService) { 
     this.comment= {} as Comentario;
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
     this.getPublicationById();
     this.getAllCommentsById();
+
+
+
+    if (this.loginService.isUserLogged() == "logged") {
+      this.isLogged = true;
+      this.user = this.loginService.getUser();
+    }
+    
   }
 
   ngOnInit(): void {
@@ -76,6 +90,7 @@ export class PublicationDetailComponent {
 
   createComment(){
     this.comment = {...this.formData.value} as Comentario;
+    this.comment.usuario_id = this.user._id;
     this.comment.publicacion_id = this.id;
 
     this.comment._id = this.allComents.length + 1;

@@ -2,7 +2,7 @@
 <div class="ctn-filter">
   <div class="header-container">
 
-      <form (submit)="onSubmit()" #userForm= 'ngForm'>
+      <form (submit)="onSubmit()" #userForm= 'ngForm' class="grid col-8 gap-4 ">
         <mat-form-field appearance="outline">
             <input type="text" matInput placeholder="Nombres" name="Nombres" required [(ngModel)]="userData.nombres">
         </mat-form-field>
@@ -58,7 +58,7 @@
 </div>
 
 <div class="filter">
-  <mat-form-field class="ctn-input">
+  <mat-form-field class="ctn-input"  appearance="outline">
     <mat-label>Busca un Usuario</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ejem: Juan Perez"
       aria-label="Search for users" #input>

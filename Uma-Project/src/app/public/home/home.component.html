@@ -36,14 +36,16 @@
             <img src="{{ store.imagen }}" class="card-img-top" alt="" width="auto" height="320px">
           </div>
           <div class="card-footer d-flex flex-column gap-3 ">
-            <div class="calificacion d-flex flex-row gap-2 mt-2 justify-content-center align-items-center">
-                <ng-container *ngFor="let i of [].constructor(store.calificacion)">
-                  <i class="bi bi-star-fill text-center" style="font-size: 1.5rem; color: #FFC700;"></i>
-                </ng-container>
-              
+            <div class="calificacion d-flex flex-column gap-2 mt-2 justify-content-center align-items-center">
+                <div class="flex gap-2">
+                  <ng-container *ngFor="let i of [].constructor(store.calificacion)">
+                    <i class="bi bi-star-fill text-center" style="font-size: 1.5rem; color: #FFC700;"></i>
+                  </ng-container>
+                </div>
+                <a href="" class="btn btn-detalle mt-2">{{store.calificacion}} estrellas</a>
             </div>
             <div class="btns d-flex gap-5">
-              <a href="#" class="btn btn-detalle">Ver Tienda</a>
+              <!-- <a href="#" class="btn btn-detalle">Ver Tienda</a> -->
               <!-- <a href="#" class="btn btn-detalle">Seguir</a> -->
             </div>
           </div>

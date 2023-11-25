@@ -7,16 +7,42 @@ const storeModel = require("../models/StoreModel");
 
 //----------------------CRUD PUBLICACIONES-----------------
 //#Get
-router.get("/publicaciones", async (req, res)=>{
-    const publications= await publicationModel.find();
-    res.json(publications);
+router.get("/publicaciones", async (req, res) => {
+    try {
+        const publications = await publicationModel.find().populate('producto_id');
+
+        if (!publications || publications.length === 0) {
+            return res.status(404).json({ error: "No se encontraron publicaciones" });
+        }
+
+        // Mapear las publicaciones para incluir la información del producto
+        const responseData = await Promise.all(publications.map(async (publication) => {
+            const product = await productModel.findById(publication.producto_id);
+
+            return {
+                _id: publication._id,
+                titulo: publication.titulo,
+                descripcion: publication.descripcion,
+                fecha: publication.fecha,
+                imagenes: publication.imagenes,
+                tienda_id: publication.tienda_id,
+                producto: product || null 
+            };
+        }));
+
+        res.json(responseData);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error al obtener las publicaciones" });
+    }
 });
 
 //#Post
 router.post("/publicaciones", async (req, res) => {
     try {
-        //Verificar que exista el producto y la tienda
 
+        //Verificar que exista el producto y la tienda
         const product = await productModel.findById(req.body.producto_id);
         const store = await storeModel.findById(req.body.tienda_id);
 
@@ -43,7 +69,23 @@ router.post("/publicaciones", async (req, res) => {
 router.get("/publicaciones/:id", async (req, res)=>{
     try {
     const publication= await publicationModel.findById(req.params.id);
-    res.json(publication);
+    const product = await productModel.findById(publication.producto_id);
+
+    if (!product) {
+        return res.status(404).json({ error: "Producto asociado no encontrado" });
+    }
+    
+    const responseData = {
+        _id: publication._id,
+        titulo: publication.titulo,
+        descripcion: publication.descripcion,
+        fecha: publication.fecha,
+        imagenes : publication.imagenes,
+        tienda_id: publication.tienda_id,
+        producto: product 
+    };
+
+    res.json(responseData);
     }
     catch (err) {
         console.error(err);

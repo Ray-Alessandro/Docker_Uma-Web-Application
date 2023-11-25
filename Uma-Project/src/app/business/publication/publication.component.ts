@@ -19,7 +19,8 @@ export class PublicationComponent {
     fecha: null,
     imagenes: null,
     tienda_id: null,
-    producto_id: null
+    producto_id: null,
+    producto:null,
   };
 
   constructor(private publicationService: PublicationService, private router: Router) { }
