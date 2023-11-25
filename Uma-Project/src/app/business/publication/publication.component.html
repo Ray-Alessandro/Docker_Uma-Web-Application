@@ -1,23 +1,23 @@
 <div class="ctn-filter">
     <div class="header-container">
-          <form (submit)="onSubmit()" #userForm= 'ngForm'>
-              <mat-form-field>
+          <form (submit)="onSubmit()" #userForm= 'ngForm' class="flex gap-2"> 
+              <mat-form-field  appearance="outline">
                   <input type="text" matInput placeholder="Titulo" name="Titulo" required [(ngModel)]="publicationData.titulo">
               </mat-form-field>
           
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                   <input type="text" matInput placeholder="Descripcion" name="Descripcion" required [(ngModel)]="publicationData.descripcion">
               </mat-form-field>
   
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                   <input type="text" matInput placeholder="Imagen" name="Imagen" required [(ngModel)]="publicationData.imagenes">
               </mat-form-field>
           
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                   <input type="text" matInput placeholder="Tienda_id" name="Tienda_id" required [(ngModel)]="publicationData.tienda_id">
               </mat-form-field>
   
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                   <input type="text" matInput placeholder="Producto_id" name="Producto_id" required [(ngModel)]="publicationData.producto_id">
               </mat-form-field>
   
@@ -26,19 +26,19 @@
       </div>
   </div>
   
-  <div class="container d-flex flex-column justify-content-center align-items-center w-100 m-5 ">
-      <div class="row justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las tarjetas -->
+  <div class="container d-flex flex-column justify-content-center align-items-center w-screen ">
+      <div class="row d-flex  justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las tarjetas -->
           <div class="col-md-4 mb-4" *ngFor="let publication of publications">
-              <div class="card p-4">
+              <div class="card p-3 flex gap-5 h-50rem " >
                   <div class="card-body d-flex flex-column justify-content-center align-items-center">
                       <h2 class="card-title">{{ publication.titulo }}</h2>
                       <p class="card-text">{{ publication.descripcion }}</p>
                   </div>
-                  <div class="carousel slide" [id]="'carouselExampleIndicators_' + publication._id">
+                  <div class=" carousel slide" [id]="'carouselExampleIndicators_' + publication._id">
                       <div class="carousel-indicators">
                           <button type="button" [attr.data-bs-target]="'#carouselExampleIndicators_' + publication._id" [attr.data-bs-slide-to]="i" [class.active]="i === 0" *ngFor="let image of publication.imagenes; let i = index" [attr.aria-current]="i === 0 ? 'true' : null" [attr.aria-label]="'Slide ' + (i + 1)"></button>
                       </div>
-                      <div class="carousel-inner">
+                      <div class="carousel-inner ">
                           <div class="carousel-item" [class.active]="i === 0" *ngFor="let image of publication.imagenes; let i = index">
                               <img [src]="image" class="d-block w-100" alt="...">
                           </div>
@@ -52,7 +52,9 @@
                           <span class="visually-hidden">Next</span>
                       </button>
                   </div>
-                  <a (click)="irPublicacion(publication._id)"  class="btn btn-detalle">Ver Publicacion</a>
+                  <div class="flex justify-content-center align-content-center	">
+                      <a (click)="irPublicacion(publication._id)"  class="btn btn-detalle">Ver Publicacion</a>
+                  </div>
               </div>
           </div>
       </div>

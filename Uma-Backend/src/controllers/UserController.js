@@ -62,15 +62,18 @@ router.delete("/usuarios/:id", async (req, res) => {
 });
 
 //Login
-router.post("/login", async (req, res) => {
+router.post("/usuarios/login", async (req, res) => {
     try {
         const user = await userModel.findOne({ credencial: req.body.credencial });
+
         if (!user) {
             return res.status(404).json({ status: "Usuario no encontrado" });
         }
+        
         if (user.contrasena !== req.body.contrasena) {
             return res.status(401).json({ status: "Contraseña incorrecta" });
         }
+        
         res.json({ status: "Usuario logueado", user });
     } catch (err) {
         console.error(err);

@@ -3,39 +3,39 @@
   <div class="header-container">
 
       <form (submit)="onSubmit()" #userForm= 'ngForm'>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input type="text" matInput placeholder="Nombres" name="Nombres" required [(ngModel)]="userData.nombres">
         </mat-form-field>
       
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input type="text" matInput placeholder="Apellidos" name="Apellidos" required [(ngModel)]="userData.apellidos">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input type="text" matInput placeholder="Telefono" name="Telefono" required [(ngModel)]="userData.telefono">
         </mat-form-field>
       
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input type="text" matInput placeholder="Correo" name="Correo" required [(ngModel)]="userData.credencial.correo">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input type="text" matInput placeholder="Password" name="Password" required [(ngModel)]="userData.credencial.password">
         </mat-form-field>
         
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <input type="text" matInput placeholder="Pais" name="Pais" required [(ngModel)]="userData.localidad.pais">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input type="text" matInput placeholder="Ciudad" name="Ciudad" required [(ngModel)]="userData.localidad.ciudad">
         </mat-form-field>
     
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input type="text" matInput placeholder="Dirreccion" name="Dirreccion" required [(ngModel)]="userData.localidad.direccion">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <input type="text" matInput placeholder="Foto" name="Foto" required [(ngModel)]="userData.foto">
         </mat-form-field>
   
