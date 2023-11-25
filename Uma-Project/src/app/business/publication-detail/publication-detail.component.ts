@@ -40,15 +40,14 @@ export class PublicationDetailComponent {
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
     this.getPublicationById();
-    this.getAllComents();
+    this.getAllCommentsById();
   }
 
   ngOnInit(): void {
-    this.getPublicationById();
-    this.getAllComments();
+    this.getAllComents();
     console.log(this.id);
-
   }
+
   onSubmit() {
     console.log(this.formData.value);
     this.createComment();
@@ -68,7 +67,7 @@ export class PublicationDetailComponent {
     });
   }
 
-  getAllComments(){
+  getAllCommentsById(){
     this.comentarioService.getAllComments(this.id).subscribe((data: any) => {
       this.comments = data;
       console.log(this.comments);
@@ -78,14 +77,20 @@ export class PublicationDetailComponent {
   createComment(){
     this.comment = {...this.formData.value} as Comentario;
     this.comment.publicacion_id = this.id;
+
     this.comment._id = this.allComents.length + 1;
+
     console.log(this.comment._id);
     console.log(this.comment);
     console.log(this.comments);
+
+    this.formData.reset();
+    
     this.comentarioService.createComment(this.comment).subscribe((data: any) => {
       this.comments = data;
       console.log(this.comments);
       this.getPublicationById();
+      this.getAllCommentsById();
       this.getAllComents();
     });
   }

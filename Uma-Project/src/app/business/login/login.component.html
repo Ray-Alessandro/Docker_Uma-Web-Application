@@ -1,0 +1,21 @@
+<div class="login-component">
+    <div class="ctn-picture">
+        <img src="https://cdn.discordapp.com/attachments/1151996567549648996/1177673174389891162/image-PhotoRoom.png-PhotoRoom.png" alt="userPicture">
+    </div>
+
+    <div class="login-data">
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+            </span>
+            <input pInputText placeholder="Correo" style="font-size: 1.35rem; border: 0.5px solid rgb(207, 204, 204);"/>
+        </div>
+
+        <p-password class="pass-button" [(ngModel)]="value" [toggleMask]="true" placeholder="Contraseña" class="p-inputtext-lg"></p-password>
+    </div>
+
+    <div class="flex justify-content-center">
+        <p-button label="Ingresar"></p-button>
+    </div>
+
+</div>

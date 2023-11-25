@@ -5,12 +5,16 @@ import { UsersComponent } from './business/users/users.component';
 import { ProductsComponent } from './business/products/products.component';
 import { PublicationComponent } from './business/publication/publication.component';
 import { PublicationDetailComponent } from './business/publication-detail/publication-detail.component';
+import { LoginComponent } from './business/login/login.component';
+
+
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'users', component: UsersComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'publications', component: PublicationComponent},
   {path: 'publications/:id', component: PublicationDetailComponent},
+  {path: 'login', component: LoginComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: '**', redirectTo: 'home' } 
 ];

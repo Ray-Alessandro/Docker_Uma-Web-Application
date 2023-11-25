@@ -35,7 +35,8 @@ export class UsersComponent {
       direccion: null,
       pais: null,
       ciudad: null
-    }
+    },
+    foto : null
   };
   //userCreated = false;
   userDeleted = false;
@@ -77,6 +78,7 @@ export class UsersComponent {
     'Usuario_id',
     'Nombres',
     'Apellidos',
+    'Foto',
     'Correo',
     'Numero_telefono',
     'Pais',

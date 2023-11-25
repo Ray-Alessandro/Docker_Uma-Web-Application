@@ -61,5 +61,22 @@ router.delete("/usuarios/:id", async (req, res) => {
     }
 });
 
+//Login
+router.post("/login", async (req, res) => {
+    try {
+        const user = await userModel.findOne({ credencial: req.body.credencial });
+        if (!user) {
+            return res.status(404).json({ status: "Usuario no encontrado" });
+        }
+        if (user.contrasena !== req.body.contrasena) {
+            return res.status(401).json({ status: "Contraseña incorrecta" });
+        }
+        res.json({ status: "Usuario logueado", user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error al iniciar sesión" });
+    }
+});
+
 //Exportamos el Controlador
 module.exports = router;

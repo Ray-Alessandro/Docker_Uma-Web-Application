@@ -1,4 +1,4 @@
-
+/* 
 .header{
   padding: 10px 20px;
   font-size: 1.1rem;
@@ -7,12 +7,7 @@
   align-items: center;
   background-color: wheat;
 }
-a{
-  text-decoration: none;
-  color: black;
-  font-weight: 500;
-  
-}
+
 .nav-bar{
   display: flex;
   align-content: center;
@@ -21,7 +16,28 @@ a{
 }
 a{
   color: black;
-}
+} */
 img:hover{
   cursor: pointer;
+}
+i{
+  color: white;
+}
+
+:host ::ng-deep .p-toolbar {
+  background-color: wheat	;
+  border:  wheat 2px solid;
+}
+
+:host ::ng-deep .p-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 1.2rem;
+  
 }

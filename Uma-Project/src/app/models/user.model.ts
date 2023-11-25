@@ -12,4 +12,5 @@ export interface User {
         pais: any;
         ciudad: any;
     }
+    foto: any;
 }

@@ -34,14 +34,18 @@
         <mat-form-field>
           <input type="text" matInput placeholder="Dirreccion" name="Dirreccion" required [(ngModel)]="userData.localidad.direccion">
         </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="Foto" name="Foto" required [(ngModel)]="userData.foto">
+        </mat-form-field>
   
       <ng-container *ngIf="isEditMode; else elseTemplate">
-          <button mat-button color="primary">Update</button>&nbsp;
-          <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+          <button mat-button color="primary">Actualizar</button>&nbsp;
+          <button mat-button color="warn" (click)="cancelEdit()">Cancelar</button>
       </ng-container>&nbsp;
   
       <ng-template #elseTemplate>
-          <button mat-button color="primary">Add</button>
+          <button mat-button color="primary">Añadir</button>
       </ng-template>
   </form>
 
@@ -79,6 +83,11 @@
       <ng-container matColumnDef="Apellidos" class="container-lastname">
           <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-lastname"> Apellidos </th>
           <td mat-cell *matCellDef="let element" class="center-text"> {{element.apellidos}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Foto" class="container-lastname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fotos </th>
+          <td mat-cell *matCellDef="let element" class="center-text"> <img src="{{element.foto}}" width="150px" alt=""></td>
         </ng-container>
 
       <ng-container matColumnDef="Correo" class="container-correo">

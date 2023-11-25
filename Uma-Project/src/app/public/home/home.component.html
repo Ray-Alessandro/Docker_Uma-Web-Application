@@ -23,7 +23,9 @@
   
 
   <div class="container">
-    <h2>Productos Destacados</h2>
+    <h2>Tiendas Destacadas</h2>
+    
+
     <div class="row">
       <div class="col-md-4 " *ngFor="let store of stores">
         <div class="card rounded mb-4">
@@ -31,7 +33,7 @@
             <h4 class="card-title text-center">{{  store.nombre | uppercase }}</h4>
           </div>
           <div class="card-body ">
-            <img src="{{ store.imagen }}" class="card-img-top" alt="" width="auto" height="auto">
+            <img src="{{ store.imagen }}" class="card-img-top" alt="" width="auto" height="340px">
           </div>
           <div class="card-footer d-flex flex-column gap-3 ">
             <div class="calificacion d-flex flex-row gap-2 mt-2 justify-content-center align-items-center">
@@ -50,5 +52,3 @@
       </div>
     </div>
   </div>
-  
-  

@@ -127,10 +127,11 @@ openDialogDelete(product_id : number) {
 
   //add
   addProduct(){ 
-    this.productData._id = this.dataSource.data.length + 1;
+    this.productData._id = this.dataSource.data.length + 3;
     this.productService.createProduct(this.productData).subscribe((response: any)=>{
       this.dataSource.data.push({...response});
       this.dataSource.data = this.dataSource.data.map((o: any)=> o);
+      this.getAllProducts();
     })
   }
 

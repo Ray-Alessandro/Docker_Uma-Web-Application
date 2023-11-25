@@ -15,6 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { PublicationComponent } from './business/publication/publication.component';
 import { PublicationDetailComponent } from './business/publication-detail/publication-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { LoginComponent } from './business/login/login.component';
+import { ToolbarModule } from 'primeng/toolbar';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { SidebarModule } from 'primeng/sidebar';
+import { PasswordModule } from 'primeng/password';
+import { CardModule } from 'primeng/card';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsersComponent,
     ProductsComponent,
     PublicationComponent,
-    PublicationDetailComponent
+    PublicationDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +42,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonModule,
+    ToolbarModule,
+    SplitButtonModule,
+    SidebarModule,
+    PasswordModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

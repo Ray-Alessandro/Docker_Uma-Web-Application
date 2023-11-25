@@ -1,0 +1,53 @@
+.login-component{
+    margin-bottom: 1rem;
+}
+
+.login-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.ctn-picture{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+img{
+    margin-top: 4.5rem;
+    width: 35rem;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.p-inputgroup{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.p-inputgroup-addon {
+    width: 1rem;
+    background-color: #f1f1f1;
+}
+
+.pass-button{
+    border: none;
+    border-radius: 5px 0px 0px 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.p-inputgroup input{
+    width: 20rem;
+    height: 3.3rem;
+    border-radius: 0px 5px 5px 0px;
+    border: none;
+    padding-left: 1rem;
+}
